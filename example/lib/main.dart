@@ -110,6 +110,7 @@ class MySampleState extends State<MySample> {
                           themeColor: Colors.blue,
                           textColor: Colors.white,
                           labelStyle: const TextStyle(color: Colors.white),
+                          // inputTextStyle: const TextStyle(color: Colors.blue),
                           cardNumberLabel: 'Card Number',
                           cardNumberDecoration: InputDecoration(
                             labelText: 'Number',

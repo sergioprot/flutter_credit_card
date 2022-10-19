@@ -354,7 +354,8 @@ class _CreditCardFormState extends State<CreditCardForm> {
                       focusNode: cardHolderNode,
                       style: widget.inputTextStyle,
                       decoration: widget.cardHolderDecoration,
-                      keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.name,
+                      textCapitalization: TextCapitalization.words,
                       textInputAction: TextInputAction.next,
                       autofillHints: const <String>[
                         AutofillHints.creditCardName

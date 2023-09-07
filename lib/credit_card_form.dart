@@ -455,68 +455,71 @@ class _CreditCardFormState extends State<CreditCardForm> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    // padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    margin: EdgeInsets.only(
-                      left: widget.horizontalPaddingBetweenInputs / 2,
-                      top: widget.inputVerticalPadding,
-                      right: 0,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        if (widget.cvvCodeLabel != null)
-                          Padding(
-                            padding:
-                                EdgeInsets.only(bottom: widget.labelPadding),
-                            child: Text(
-                              widget.cvvCodeLabel!,
-                              style: widget.labelStyle,
+                  child: Visibility(
+                    visible: widget.enableCvv,
+                    child: Container(
+                      // padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      margin: EdgeInsets.only(
+                        left: widget.horizontalPaddingBetweenInputs / 2,
+                        top: widget.inputVerticalPadding,
+                        right: 0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          if (widget.cvvCodeLabel != null)
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(bottom: widget.labelPadding),
+                              child: Text(
+                                widget.cvvCodeLabel!,
+                                style: widget.labelStyle,
+                              ),
                             ),
-                          ),
-                        TextFormField(
-                          key: widget.cvvCodeKey,
-                          obscureText: widget.obscureCvv,
-                          focusNode: cvvFocusNode,
-                          controller: _cvvCodeController,
-                          cursorColor: widget.cursorColor ?? themeColor,
-                          onEditingComplete: () {
-                            FocusScope.of(context).unfocus();
-                            onCreditCardModelChange(creditCardModel);
-                            if (widget.onFormComplete != null) {
-                              widget.onFormComplete!();
-                            }
-                          },
-                          style: widget.inputTextStyle,
-                          decoration: widget.cvvCodeDecoration,
-                          keyboardType: TextInputType.number,
-                          textInputAction: TextInputAction.done,
-                          autofillHints: const <String>[
-                            AutofillHints.creditCardSecurityCode
-                          ],
-                          onChanged: (String text) {
-                            setState(() {
-                              cvvCode = text;
-                              creditCardModel.cvvCode = cvvCode;
-                              onCreditCardModelChange(creditCardModel);
-                            });
-                            if (text.length >= 3) {
+                          TextFormField(
+                            key: widget.cvvCodeKey,
+                            obscureText: widget.obscureCvv,
+                            focusNode: cvvFocusNode,
+                            controller: _cvvCodeController,
+                            cursorColor: widget.cursorColor ?? themeColor,
+                            onEditingComplete: () {
                               FocusScope.of(context).unfocus();
                               onCreditCardModelChange(creditCardModel);
                               if (widget.onFormComplete != null) {
                                 widget.onFormComplete!();
                               }
-                            }
-                          },
-                          validator: widget.cvvValidator ??
-                              (String? value) {
-                                if (value!.isEmpty || value.length < 3) {
-                                  return widget.cvvValidationMessage;
+                            },
+                            style: widget.inputTextStyle,
+                            decoration: widget.cvvCodeDecoration,
+                            keyboardType: TextInputType.number,
+                            textInputAction: TextInputAction.done,
+                            autofillHints: const <String>[
+                              AutofillHints.creditCardSecurityCode
+                            ],
+                            onChanged: (String text) {
+                              setState(() {
+                                cvvCode = text;
+                                creditCardModel.cvvCode = cvvCode;
+                                onCreditCardModelChange(creditCardModel);
+                              });
+                              if (text.length >= 3) {
+                                FocusScope.of(context).unfocus();
+                                onCreditCardModelChange(creditCardModel);
+                                if (widget.onFormComplete != null) {
+                                  widget.onFormComplete!();
                                 }
-                                return null;
-                              },
-                        ),
-                      ],
+                              }
+                            },
+                            validator: widget.cvvValidator ??
+                                (String? value) {
+                                  if (value!.isEmpty || value.length < 3) {
+                                    return widget.cvvValidationMessage;
+                                  }
+                                  return null;
+                                },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

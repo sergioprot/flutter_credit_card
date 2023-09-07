@@ -59,6 +59,7 @@ class MySampleState extends State<MySample> {
                   height: 30,
                 ),
                 CreditCardWidget(
+                  // margin: EdgeInsets.zero,
                   glassmorphismConfig:
                       useGlassMorphism ? Glassmorphism.defaultConfig() : null,
                   cardNumber: cardNumber,
@@ -108,6 +109,8 @@ class MySampleState extends State<MySample> {
                           expiryDate: expiryDate,
                           themeColor: Colors.blue,
                           textColor: Colors.white,
+                          labelStyle: const TextStyle(color: Colors.white),
+                          cardNumberLabel: 'Card Number',
                           cardNumberDecoration: InputDecoration(
                             labelText: 'Number',
                             hintText: 'XXXX XXXX XXXX XXXX',
@@ -116,6 +119,7 @@ class MySampleState extends State<MySample> {
                             focusedBorder: border,
                             enabledBorder: border,
                           ),
+                          expiryDateLabel: 'Expiry Date',
                           expiryDateDecoration: InputDecoration(
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
@@ -124,6 +128,7 @@ class MySampleState extends State<MySample> {
                             labelText: 'Expired Date',
                             hintText: 'XX/XX',
                           ),
+                          cvvCodeLabel: 'CVV',
                           cvvCodeDecoration: InputDecoration(
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),
@@ -132,6 +137,7 @@ class MySampleState extends State<MySample> {
                             labelText: 'CVV',
                             hintText: 'XXX',
                           ),
+                          cardHolderLabel: 'Card Holder',
                           cardHolderDecoration: InputDecoration(
                             hintStyle: const TextStyle(color: Colors.white),
                             labelStyle: const TextStyle(color: Colors.white),

@@ -55,6 +55,7 @@ class CreditCardWidget extends StatefulWidget {
     this.frontCardBorder,
     this.backCardBorder,
     this.obscureInitialCardNumber = false,
+    this.margin = const EdgeInsets.all(AppConstants.creditCardPadding),
   }) : super(key: key);
 
   /// A string indicating number on the card.
@@ -149,6 +150,7 @@ class CreditCardWidget extends StatefulWidget {
 
   /// Replaces credit card image with provided widget.
   final List<CustomCardTypeIcon> customCardTypeIcons;
+  final EdgeInsetsGeometry? margin;
 
   /// Provides equal padding inside the credit card widget in all directions.
   /// Defaults to 16.
@@ -363,8 +365,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
       glassmorphismConfig: widget.glassmorphismConfig,
       height: widget.height,
       width: widget.width,
-      padding: widget.padding,
+      // padding: widget.padding,
       border: widget.frontCardBorder,
+      margin: widget.margin,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -489,8 +492,9 @@ class _CreditCardWidgetState extends State<CreditCardWidget>
       glassmorphismConfig: widget.glassmorphismConfig,
       height: widget.height,
       width: widget.width,
-      padding: widget.padding,
+      // padding: widget.padding,
       border: widget.backCardBorder,
+      margin: widget.margin,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,

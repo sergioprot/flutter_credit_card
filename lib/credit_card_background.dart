@@ -15,8 +15,8 @@ class CardBackground extends StatelessWidget {
     this.width,
     this.height,
     this.glassmorphismConfig,
-    required this.padding,
     this.border,
+    this.margin,
   })  : assert(
             (backgroundImage == null && backgroundNetworkImage == null) ||
                 (backgroundImage == null && backgroundNetworkImage != null) ||
@@ -31,8 +31,8 @@ class CardBackground extends StatelessWidget {
   final Glassmorphism? glassmorphismConfig;
   final double? width;
   final double? height;
-  final double padding;
   final BoxBorder? border;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class CardBackground extends StatelessWidget {
         alignment: Alignment.center,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.all(padding),
+            margin: margin,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               border: border,
@@ -74,7 +74,8 @@ class CardBackground extends StatelessWidget {
             width: width ?? screenWidth,
             height: height ??
                 (orientation == Orientation.portrait
-                    ? (((width ?? screenWidth) - (padding * 2)) *
+                    ? (((width ?? screenWidth) -
+                            (AppConstants.creditCardPadding * 2)) *
                         AppConstants.creditCardAspectRatio)
                     : screenHeight / 2),
             child: ClipRRect(
